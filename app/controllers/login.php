@@ -54,7 +54,7 @@ $app->post('/login/auth', function () use ($app) {
                 $ar->nickname = "水果人" . uniqid();
                 $ar->save();
 
-                $id = Users::findFirst("'phone' = " . $data['phone'] . " and 'deleteflag' = 0")->id;
+                $id = Users::findFirst("phone = " . $data['phone'] . " and deleteflag = 0")->id;
             }
 
             $token = md5($id . $data['phone'] . $app->config->salt . $data['uuid']);
