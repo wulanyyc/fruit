@@ -22,8 +22,10 @@ $app->get('/login/smscode/{phone:\d+}', function ($phone) use ($app) {
 
 //用户认证（手机动态登录）
 $app->post('/login/auth', function () use ($app) {
-    $input = file_get_contents("php://input");
-    $data = json_decode($input, true);
+    // $input = file_get_contents("php://input");
+    // $data = json_decode($input, true);
+
+    $data = $app->request->getPost();
 
     if (!isset($data['phone'])) {
         throw new BusinessException(1000, '手机号码不能为空');
