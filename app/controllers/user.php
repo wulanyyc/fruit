@@ -8,7 +8,7 @@ $app->get('/user/info/{id:\d+}', function ($id) use ($app) {
 });
 
 $app->post('/user/info/update/{id:\d+}', function ($id) use ($app) {
-    $params = $app->request->getJsonRawBody();
+    $params = $app->request->getPost();
     $ar = Users::findFirst($id);
     foreach($params as $key => $value) {
         $ar->$key = $value;
