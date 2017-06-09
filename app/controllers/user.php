@@ -1,5 +1,5 @@
 <?php
-use Fruits\Model\Users;
+use Fruit\Model\Users;
 
 //用户认证（手机动态登录）
 $app->get('/user/info/{id:\d+}', function ($id) use ($app) {

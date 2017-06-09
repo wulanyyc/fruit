@@ -1,6 +1,6 @@
 <?php
 
-namespace Fruits\Model;
+namespace Fruit\Model;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Validation;

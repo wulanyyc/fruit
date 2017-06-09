@@ -1,9 +1,9 @@
 <?php
-use Fruits\Model\Users;
+use Fruit\Model\Users;
 
 class UserHelper
 {
-    public static function checkExsit($phone) {
+    public static function checkUserExsit($phone) {
         $result = Users::findFirst(["phone" => $phone, "deleteflag" => 0]);
         if ($result && $result->id) {
             return $result->id;

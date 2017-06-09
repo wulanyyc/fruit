@@ -2,7 +2,7 @@
 /**
  * error_code 从1000开始
  */
-use Fruits\Model\Users;
+use Fruit\Model\Users;
 
 //用户认证（手机动态登录）
 $app->get('/login/smscode/{phone:\d+}', function ($phone) use ($app) {
@@ -47,7 +47,7 @@ $app->post('/login/auth', function () use ($app) {
 
     if ($compareCode == $data['code']) {
         try {
-            $id = UserHelper::checkExsit($data['phone']);
+            $id = UserHelper::checkUserExsit($data['phone']);
             if (empty($id)) {
                 $ar = new Users();
                 $ar->phone = $data['phone'];
