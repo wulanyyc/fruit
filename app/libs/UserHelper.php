@@ -5,7 +5,7 @@ class UserHelper
 {
     public static function checkExsit($phone) {
         $result = Users::findFirst(["phone" => $phone, "deleteflag" => 0]);
-        if ($result->id) {
+        if ($result && $result->id) {
             return $result->id;
         }
 
