@@ -4,7 +4,7 @@ use Fruit\Model\Users;
 class UserHelper
 {
     public static function checkUserExsit($phone) {
-        $result = Users::findFirst(["phone" => $phone, "deleteflag" => 0]);
+        $result = Users::findFirst('"phone" => ' . $phone . ' and "deleteflag" => 0');
         if ($result && $result->id) {
             return $result->id;
         }
