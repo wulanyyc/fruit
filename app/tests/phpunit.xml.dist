@@ -1,0 +1,7 @@
+<phpunit bootstrap="bootstrap.php" colors="true">
+    <php>
+        <const name="TEST_URL" value="http://trest.tff.com"/>
+    </php>
+
+</phpunit>
+
