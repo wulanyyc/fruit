@@ -27,8 +27,8 @@ function init_loader()
     ], true);
 
     $loader->registerNamespaces([
-        'Fruits\Controller' => __DIR__ . '/controllers/',
-        'Fruits\Model' => __DIR__ . '/models/',
+        'Fruit\Controller' => __DIR__ . '/controllers/',
+        'Fruit\Model' => __DIR__ . '/models/',
     ]);
 
     $loader->register();

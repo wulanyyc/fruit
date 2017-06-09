@@ -1,7 +1,4 @@
 <?php
-use Services\Provider\Manager;
-use Services\Resource\Currency;
-use Trest\Model\Product;
 
 class Util
 {
