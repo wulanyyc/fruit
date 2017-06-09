@@ -21,12 +21,6 @@ class Users extends Model
             ]
         ));
 
-        $validator->add('user_type', new PresenceOf(
-            [
-                "message" => "user_type is required",
-            ]
-        ));
-
         $validator->add(
             "phone",
             new Regex(
