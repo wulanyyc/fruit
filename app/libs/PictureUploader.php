@@ -1,5 +1,4 @@
 <?php
-// namespace Trest\Model;
 
 class PictureUploader
 {
