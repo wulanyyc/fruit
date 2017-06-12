@@ -106,12 +106,12 @@ class PictureUploader
                 }
             }
             $rows[] = [
-                'hash' => $hash,
-                'mime_type' => $mime_type,
-                'size' => $size,
+                // 'hash' => $hash,
+                // 'mime_type' => $mime_type,
+                // 'size' => $size,
                 'width' => $image->getWidth(),
                 'height' => $image->getHeight(),
-                'original_name' => urldecode(pathinfo(urlencode($original_name), PATHINFO_FILENAME)),
+                // 'original_name' => urldecode(pathinfo(urlencode($original_name), PATHINFO_FILENAME)),
                 'file_name' => self::parseHash($hash) . self::fileExtension($mime_type)
             ];
 
