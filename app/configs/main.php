@@ -38,6 +38,6 @@ return [
     'salt' => 'yyctest',
     'deploy' => 'testing',
     'picture' => [
-        'path' => __DIR__ . "/../../public/upload",
+        'path' => __DIR__ . "/../../public/upload/",
     ]
 ];
