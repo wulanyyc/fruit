@@ -1,5 +1,4 @@
 <?php
-use Fruit\Model\Users;
 use Fruit\Model\Shops;
 
 $app->post('/shop/apply/{id:\d+}', function ($id) use ($app) {
