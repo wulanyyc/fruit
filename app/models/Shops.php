@@ -31,7 +31,7 @@ class Shops extends Model
             "shop_img_url",
             new PresenceOf(
                 [
-                    "message" => "user_id is required",
+                    "message" => "shop_img_url is required",
                 ]
             )
         );

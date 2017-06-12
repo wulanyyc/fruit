@@ -5,6 +5,7 @@ $app->post('/shop/apply/{id:\d+}', function ($id) use ($app) {
     $params = $app->request->getPost();
     $ar =  new Shops();
     $ar->user_id = $id;
+    $ar->date = date("Ymd", time());
     foreach($params as $key => $value) {
         if ($key == 'name') {
             $ar->name = $value;
