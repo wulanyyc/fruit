@@ -34,10 +34,9 @@ class PictureUploader
     public static function parseHash($hash)
     {
         return sprintf(
-            "%s/%s/%s/%s",
-            substr($hash, 0, 4),
-            substr($hash, 4, 3),
-            substr($hash, 7, 3),
+            "%s/%s/%s",
+            substr($hash, 0, 5),
+            substr($hash, 5, 5),
             substr($hash, 10)
         );
     }
@@ -76,6 +75,7 @@ class PictureUploader
                 $errors[$original_name] = ['code' => 1201, 'message' => 'size over limit'];
                 continue;
             }
+
             $mime_type = $file->getRealType();
             if (!self::isAllowedType($mime_type)) {
                 $errors[$original_name] = ['code' => 1202, 'message' => 'file type is not allowed'];
@@ -105,6 +105,7 @@ class PictureUploader
                     continue;
                 }
             }
+            
             $rows[] = [
                 // 'hash' => $hash,
                 // 'mime_type' => $mime_type,
