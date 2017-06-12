@@ -87,7 +87,7 @@ function init_app($di)
         }
 
         $requestUrl = $_SERVER['REQUEST_URI'];
-        if (preg_match('/^\/login\/.*/', $requestUrl) || $requestUrl == "/") {
+        if (preg_match('/^\/open\/.*/', $requestUrl) || $requestUrl == "/") {
             return true;
         }
 

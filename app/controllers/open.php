@@ -3,9 +3,10 @@
  * error_code 从1000开始
  */
 use Fruit\Model\Users;
+use Fruit\Model\PictureUploader;
 
 //用户认证（手机动态登录）
-$app->get('/login/smscode/{phone:\d+}', function ($phone) use ($app) {
+$app->get('/open/smscode/{phone:\d+}', function ($phone) use ($app) {
     if (!$phone) {
         throw new BusinessException(1000, 'phone is required');
     }
@@ -21,7 +22,7 @@ $app->get('/login/smscode/{phone:\d+}', function ($phone) use ($app) {
 });
 
 //用户认证（手机动态登录）
-$app->post('/login/auth', function () use ($app) {
+$app->post('/open/auth', function () use ($app) {
     // $input = file_get_contents("php://input");
     // $data = json_decode($input, true);
 
@@ -67,4 +68,10 @@ $app->post('/login/auth', function () use ($app) {
     } else {
         throw new BusinessException(1000, '验证码有误');
     }
+});
+
+//用户上传
+$app->post('/open/upload/shop/{id:\d+}', function ($id) use ($app) {
+    $uploader = new PictureUploader();
+    $uploader->upload();
 });

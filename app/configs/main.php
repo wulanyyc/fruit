@@ -40,5 +40,8 @@ return [
         "timeout" => 30,
     ],
     'salt' => 'yyctest',
-    'deploy' => 'testing'
+    'deploy' => 'testing',
+    'picture' => {
+        'path' => __DIR__ . "/../../public/upload",
+    }
 ];

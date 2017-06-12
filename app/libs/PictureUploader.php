@@ -1,5 +1,5 @@
 <?php
-namespace Trest\Model;
+// namespace Trest\Model;
 
 class PictureUploader
 {
@@ -119,7 +119,4 @@ class PictureUploader
         }
         return ['uploaded' => $rows, 'errors' => $errors];
     }
-
-
-
 }
