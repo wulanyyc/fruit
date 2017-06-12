@@ -71,6 +71,6 @@ $app->post('/open/auth', function () use ($app) {
 
 //用户上传
 $app->post('/open/upload/shop/{id:\d+}', function ($id) use ($app) {
-    $uploader = new PictureUploader();
+    $uploader = new PictureUploader($app);
     return $uploader->upload();
 });
