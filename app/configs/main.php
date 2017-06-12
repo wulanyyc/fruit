@@ -35,13 +35,9 @@ return [
     'ip2city' => [
         'db' => '/opt/geo_ip/GeoIP2-City.mmdb'
     ],
-    'hotel_api' => [
-        "url" => "http://api.admin.qa.toursforfun.com/",
-        "timeout" => 30,
-    ],
     'salt' => 'yyctest',
     'deploy' => 'testing',
-    'picture' => {
+    'picture' => [
         'path' => __DIR__ . "/../../public/upload",
-    }
+    ]
 ];
