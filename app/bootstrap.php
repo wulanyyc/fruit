@@ -71,7 +71,7 @@ function init_app($di)
         if ($app->request->isOptions()) {
             $app->response->setStatusCode(200);
             $app->response->setHeader('Access-Control-Allow-Origin', '*');
-            $app->response->setHeader('Access-Control-Allow-Headers', 'X-ACCESS-TOKEN');
+            $app->response->setHeader('Access-Control-Allow-Headers', 'X-ACCESS-TOKEN,X-ACCESS-ID');
             $app->response->setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
             $app->response->sendHeaders();
             return;
@@ -171,7 +171,7 @@ function is_valid_access($app)
         if (empty($token) || $token != $access_token) {
             raise_unauthorized($app);
         }
-        
+
         $app->user_id = $access_id;
     }
 }
