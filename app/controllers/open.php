@@ -58,7 +58,7 @@ $app->post('/open/auth', function () use ($app) {
             }
 
             $token = md5($id . $data['phone'] . $app->config->salt . $data['uuid']);
-            $app->redis->setex("token_" . $token, 2592000, $id);
+            $app->redis->setex("token_" . $id, 2592000, $token);
 
             return ['token' => $token, 'userId' => $id];
         } catch (Exception $e) {

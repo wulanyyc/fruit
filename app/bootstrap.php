@@ -161,15 +161,18 @@ function is_valid_access($app)
 {
     if ($app->request->getMethod() != 'OPTIONS') {
         $access_token = $app->request->getHeader('X_ACCESS_TOKEN');
-        if (!$access_token) {
+        $access_id = $app->request->getHeader('X_ACCESS_ID');
+
+        if (!$access_token || !$access_id) {
             raise_bad_request($app);
         }
 
-        $user_id = $app->redis->get("token_" . $access_token);
-        if (empty($user_id)) {
+        $token = $app->redis->get("token_" . $access_id);
+        if (empty($token) || $token != $access_token) {
             raise_unauthorized($app);
         }
-        $app->user_id = $user_id;
+        
+        $app->user_id = $access_id;
     }
 }
 
