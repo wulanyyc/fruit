@@ -34,9 +34,8 @@ class PictureUploader
     public static function parseHash($hash)
     {
         return sprintf(
-            "face/%s/%s/%s/%s/%s",
-            substr($hash, 0, 2),
-            substr($hash, 2, 2),
+            "%s/%s/%s/%s",
+            substr($hash, 0, 4),
             substr($hash, 4, 3),
             substr($hash, 7, 3),
             substr($hash, 10)
@@ -95,8 +94,7 @@ class PictureUploader
 
             $hash = md5_file($temp_name);
             $filename = $app->config->picture->path . self::parseHash($hash) . self::fileExtension($mime_type);
-            $app->logger->debug($filename);
-            
+
             if (!file_exists($filename)) {
                 $dir = dirname($filename);
                 if (!file_exists($dir)) {
