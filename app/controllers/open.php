@@ -57,10 +57,10 @@ $app->post('/open/auth', function () use ($app) {
 
             $info = Users::findFirst('phone=' . $data['phone'] . ' and deleteflag=0');
 
-            $token = md5($info['id'] . $data['phone'] . $app->config->salt . $data['uuid']);
-            $app->redis->setex("token_" . $info['id'], 2592000, $token);
+            $token = md5($info->id . $data['phone'] . $app->config->salt . $data['uuid']);
+            $app->redis->setex("token_" . $info->id, 2592000, $token);
 
-            return ['token' => $token, 'userId' => $info['id'], 'userType' => $info['user_type']];
+            return ['token' => $token, 'userId' => $info->id, 'userType' => $info->user_type];
         } catch (Exception $e) {
             throw new BusinessException(1001, $e->getMessage());
         }
