@@ -151,7 +151,7 @@ function is_debugging($app)
 {
     if ($app->config->env !== 'production') {
         $tdd = $app->request->getHeader('HTTP_X_TDD');
-        if ($tdd && $tdd === 'cff246d8280983c0c55c2f1280998919') {
+        if ($tdd && $tdd === 'cff246d8280983c0c55c2f1280992019') {
             return true;
         }
     }

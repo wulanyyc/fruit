@@ -20,5 +20,3 @@ $app->post('/user/info/update/{id:\d+}', function ($id) use ($app) {
         return 'ok';
     }
 });
-
-

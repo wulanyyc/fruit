@@ -53,14 +53,14 @@ $app->post('/open/auth', function () use ($app) {
                 $ar->phone = $data['phone'];
                 $ar->nickname = "水果人" . uniqid();
                 $ar->save();
-                
-                $id = Users::findFirst('phone=' . $data['phone'] . ' and deleteflag=0')->id;
             }
 
-            $token = md5($id . $data['phone'] . $app->config->salt . $data['uuid']);
-            $app->redis->setex("token_" . $id, 2592000, $token);
+            $info = Users::findFirst('phone=' . $data['phone'] . ' and deleteflag=0');
 
-            return ['token' => $token, 'userId' => $id];
+            $token = md5($info['id'] . $data['phone'] . $app->config->salt . $data['uuid']);
+            $app->redis->setex("token_" . $info['id'], 2592000, $token);
+
+            return ['token' => $token, 'userId' => $info['id'], 'userType' => $info['user_type']];
         } catch (Exception $e) {
             throw new BusinessException(1001, $e->getMessage());
         }
