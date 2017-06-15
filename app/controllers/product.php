@@ -10,7 +10,7 @@ $app->get('/product/category', function () use ($app) {
 });
 
 $app->get('/product/unit', function () use ($app) {
-    $phql = "SELECT id,text FROM product_unit where deleteflag=0";
+    $phql = "SELECT id,text FROM product_unit";
     $categorys = $app->db->fetchAll($phql);
 
     return $categorys;
