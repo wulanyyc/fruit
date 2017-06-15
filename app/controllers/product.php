@@ -8,3 +8,10 @@ $app->get('/product/category', function () use ($app) {
 
     return $categorys;
 });
+
+$app->get('/product/unit', function () use ($app) {
+    $phql = "SELECT id,text FROM product_unit where deleteflag=0";
+    $categorys = $app->db->fetchAll($phql);
+
+    return $categorys;
+});
