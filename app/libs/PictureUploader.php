@@ -94,6 +94,7 @@ class PictureUploader
 
             $hash = md5_file($temp_name);
             $filename = $app->config->picture->path . self::parseHash($hash) . self::fileExtension($mime_type);
+            $app->logger->debug($filename);
 
             if (!file_exists($filename)) {
                 $dir = dirname($filename);
