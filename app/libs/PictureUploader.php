@@ -119,6 +119,8 @@ class PictureUploader
             ];
 
         }
+
+        $app->logger->debug("test" . json_encode($errors));
         return ['uploaded' => $rows, 'errors' => $errors];
     }
 }
