@@ -62,6 +62,7 @@ class PictureUploader
         $rows = [];
         $files = $app->request->getUploadedFiles();
         $this->parseParams($params);
+        $app->logger->debug("test" . count($files));
 
         foreach ($files as $file) {
             $original_name = $file->getName();
