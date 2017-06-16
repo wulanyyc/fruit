@@ -62,7 +62,7 @@ class PictureUploader
         $rows = [];
         $files = $app->request->getUploadedFiles();
         $this->parseParams($params);
-        $app->logger->debug("test" . count($files));
+        // $app->logger->debug("test" . count($files));
 
         foreach ($files as $file) {
             $original_name = $file->getName();
@@ -120,7 +120,7 @@ class PictureUploader
 
         }
 
-        $app->logger->debug("test" . json_encode($errors));
+        $app->logger->debug("error: " . json_encode($errors));
         return ['uploaded' => $rows, 'errors' => $errors];
     }
 }
