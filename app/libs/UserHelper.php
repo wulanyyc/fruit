@@ -21,7 +21,7 @@ class UserHelper
         return false;
     }
 
-    pubilc static function getShopId($id) {
+    public static function getShopId($id) {
         return Shops::findFirst("user_id=" . $uid . " and audit_flag=1")
     }
 }
