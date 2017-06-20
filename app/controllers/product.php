@@ -25,6 +25,7 @@ $app->post('/product/add/{id:\d+}', function ($id) use ($app) {
     $ar->user_id = $id;
     $ar->name = $params['name'];
     $ar->product_category_id = $params['category'];
+    $ar->price_unit_id = $params['unit'];
     $ar->price = $params['price'];
     $ar->shop_id = $shopId;
     $ar->pic_url = $params['pic'];
@@ -50,6 +51,14 @@ $app->get('/product/list/{id:\d+}', function ($id) use ($app) {
         $tmp = [];
         foreach($item as $k => $v) {
             $tmp[$k] = $v;
+
+            if ($k == 'product_category_id') {
+                $tmp[$k] = $app->db->fetchOne("select text from product_category where id=" . $v)->text;
+            }
+
+            if ($k == 'price_unit_id') {
+                $tmp[$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)->text;
+            }
         }
         $data[] = $tmp;
     }
