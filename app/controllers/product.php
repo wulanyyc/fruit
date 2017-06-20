@@ -53,11 +53,11 @@ $app->get('/product/list/{id:\d+}', function ($id) use ($app) {
             $tmp[$k] = $v;
 
             if ($k == 'product_category_id') {
-                $tmp[$k] = $app->db->fetchOne("select text from product_category where id=" . $v)->text;
+                $tmp[$k] = $app->db->fetchOne("select text from product_category where id=" . $v)['text'];
             }
 
             if ($k == 'price_unit_id') {
-                $tmp[$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)->text;
+                $tmp[$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
             }
         }
         $data[] = $tmp;
