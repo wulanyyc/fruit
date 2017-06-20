@@ -27,6 +27,12 @@ class Products extends Model
             ]
         ));
 
+        $validator->add('user_id', new PresenceOf(
+            [
+                "message" => "user_id is required",
+            ]
+        ));
+
         $validator->add('product_category_id', new PresenceOf(
             [
                 "message" => "product_category_id is required",

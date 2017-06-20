@@ -22,6 +22,7 @@ $app->post('/product/add/{id:\d+}', function ($id) use ($app) {
     $shopId = UserHelper::getShopId($id);
 
     $ar = new Products();
+    $ar->user_id = $id;
     $ar->name = $params['name'];
     $ar->product_category_id = $params['category'];
     $ar->price = $params['price'];
@@ -35,5 +36,14 @@ $app->post('/product/add/{id:\d+}', function ($id) use ($app) {
     } else {
         return 'ok';
     }
+});
 
+$app->post('/product/list/{id:\d+}', function ($id) use ($app) {
+    $data = Products::find([
+        'user_id' => $id,
+        'audit_flag' => 1,
+        'deleteflag' => 0
+    ])->fetchAll();
+
+    return $data;
 });
