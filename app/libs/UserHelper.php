@@ -1,5 +1,6 @@
 <?php
 use Fruit\Model\Users;
+use Fruit\Model\Shops;
 
 class UserHelper
 {
@@ -18,5 +19,9 @@ class UserHelper
         }
 
         return false;
+    }
+
+    pubilc static function getShopId($id) {
+        return Shops::findFirst("user_id=" . $uid . " and audit_flag=1")
     }
 }
