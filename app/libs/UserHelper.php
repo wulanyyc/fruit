@@ -22,6 +22,6 @@ class UserHelper
     }
 
     public static function getShopId($id) {
-        return Shops::findFirst("user_id=" . $uid . " and audit_flag=1")
+        return Shops::findFirst("user_id=" . $uid . " and audit_flag=1");
     }
 }
