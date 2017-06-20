@@ -41,9 +41,9 @@ $app->post('/product/add/{id:\d+}', function ($id) use ($app) {
 
 $app->get('/product/list/{id:\d+}', function ($id) use ($app) {
     $result = Products::find([
-        'user_id' => $id,
-        'audit_flag' => 1,
-        'deleteflag' => 0
+        'conditions' => 'user_id = ' . $id . ' and audit_flag = 1 and deleteflag = 0',
+        'order' => 'id desc',
+        'columns' => 'id,product_category_id,price_unit_id,name,price,pic_url,inventory'
     ]);
 
     $data = [];
