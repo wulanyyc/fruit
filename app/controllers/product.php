@@ -38,7 +38,7 @@ $app->post('/product/add/{id:\d+}', function ($id) use ($app) {
     }
 });
 
-$app->post('/product/list/{id:\d+}', function ($id) use ($app) {
+$app->get('/product/list/{id:\d+}', function ($id) use ($app) {
     $data = Products::find([
         'user_id' => $id,
         'audit_flag' => 1,
