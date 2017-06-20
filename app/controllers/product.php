@@ -39,11 +39,20 @@ $app->post('/product/add/{id:\d+}', function ($id) use ($app) {
 });
 
 $app->get('/product/list/{id:\d+}', function ($id) use ($app) {
-    $data = Products::find([
+    $result = Products::find([
         'user_id' => $id,
         'audit_flag' => 1,
         'deleteflag' => 0
-    ])->fetchAll();
+    ]);
+
+    $data = [];
+    foreach($result as $item) {
+        $tmp = [];
+        foreach($item as $k => $v) {
+            $tmp[$k] = $v;
+        }
+        $data[] = $tmp;
+    }
 
     return $data;
 });
