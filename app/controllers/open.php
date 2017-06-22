@@ -3,6 +3,7 @@
  * error_code 从1000开始
  */
 use Fruit\Model\Users;
+use Fruit\Model\Products;
 
 //用户认证（手机动态登录）
 $app->get('/open/smscode/{phone:\d+}', function ($phone) use ($app) {
