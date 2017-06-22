@@ -51,7 +51,7 @@ $app->post('/open/auth', function () use ($app) {
             if (empty($id)) {
                 $ar = new Users();
                 $ar->phone = $data['phone'];
-                $ar->nickname = "水果人" . uniqid();
+                $ar->nickname = "地球人" . uniqid();
                 $ar->save();
             }
 
@@ -60,7 +60,7 @@ $app->post('/open/auth', function () use ($app) {
             $token = md5($info->id . $data['phone'] . $app->config->salt . $data['uuid']);
             $app->redis->setex("token_" . $info->id, 2592000, $token);
 
-            return ['token' => $token, 'userId' => $info->id, 'userType' => $info->user_type];
+            return ['token' => $token, 'userId' => $info->id, 'userType' => $info->user_type, 'nickName' => $info->nickname];
         } catch (Exception $e) {
             throw new BusinessException(1001, $e->getMessage());
         }
