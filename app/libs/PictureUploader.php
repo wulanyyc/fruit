@@ -84,10 +84,12 @@ class PictureUploader
             }
 
             $image = new \Phalcon\Image\Adapter\GD($temp_name);
+            $app->logger->debug($image->getWidth());
             if ($image->getWidth() > $this->max_width) {
                 $errors[$original_name] = ['code' => 1203, 'message' => 'width is over limit'];
                 continue;
             }
+            $app->logger->debug($image->getHeight());
             if ($image->getHeight() > $this->max_height) {
                 $errors[$original_name] = ['code' => 1204, 'message' => 'height is over limit'];
                 continue;
