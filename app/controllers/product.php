@@ -43,7 +43,8 @@ $app->get('/product/list/{id:\d+}', function ($id) use ($app) {
     $result = Products::find([
         'conditions' => 'user_id = ' . $id . ' and deleteflag = 0',
         'order' => 'id desc',
-        'columns' => 'id,product_category_id,price_unit_id,name,price,pic_url,inventory'
+        'columns' => 'id,product_category_id,price_unit_id,name,price,pic_url,inventory',
+        'limit' => 4,
     ]);
 
     $data = [];
@@ -70,7 +71,8 @@ $app->get('/product/list/recom', function () use ($app) {
     $result = Products::find([
         'conditions' => 'deleteflag = 0 and state = 2',
         'order' => 'id desc',
-        'columns' => 'id,product_category_id,price_unit_id,name,price,pic_url,inventory'
+        'columns' => 'id,product_category_id,price_unit_id,name,price,pic_url,inventory',
+        'limit' => 4,
     ]);
 
     $data = [];
