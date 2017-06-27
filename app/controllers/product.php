@@ -44,7 +44,6 @@ $app->get('/product/list/{id:\d+}', function ($id) use ($app) {
         'conditions' => 'user_id = ' . $id . ' and deleteflag = 0',
         'order' => 'id desc',
         'columns' => 'id,product_category_id,price_unit_id,name,price,pic_url,inventory',
-        'limit' => 4,
     ]);
 
     $data = [];
