@@ -82,6 +82,10 @@ $app->post('/product/list/recom', function () use ($app) {
         foreach($item as $k => $v) {
             $tmp[$k] = $v;
 
+            if ($k == 'pic_url') {
+                $tmp[$k] = empty($tmp[$k]) ? '' : $tmp[$k];
+            }
+
             if ($k == 'product_category_id') {
                 $tmp[$k] = $app->db->fetchOne("select text from product_category where id=" . $v)['text'];
             }
