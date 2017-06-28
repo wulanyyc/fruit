@@ -76,12 +76,13 @@ $app->post('/open/upload/shop/{id:\d+}', function ($id) use ($app) {
     return $uploader->upload();
 });
 
-$app->get('/open/product/recom', function () use ($app) {
+$app->post('/open/product/recom', function () use ($app) {
     $result = Products::find([
         'conditions' => 'deleteflag = 0 and state = 2',
         'order' => 'id desc',
         'columns' => 'id,product_category_id,price_unit_id,name,price,pic_url,inventory',
-        'limit' => 4,
+        'limit' => $params['pageSize'],
+        'offset' => $params['pageSize'] * $params['page']
     ]);
 
     $data = [];
