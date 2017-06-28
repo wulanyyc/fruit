@@ -76,6 +76,33 @@ $app->post('/open/upload/shop/{id:\d+}', function ($id) use ($app) {
     return $uploader->upload();
 });
 
+$app->get('/open/product/{id:\d+}', function ($id) use ($app) {
+    $result = Products::findFirst($id);
+
+    // $data = [];
+    // foreach($result as $item) {
+    //     $tmp = [];
+    //     foreach($item as $k => $v) {
+    //         $tmp[$k] = $v;
+
+    //         if ($k == 'pic_url') {
+    //             $tmp[$k] = empty($tmp[$k]) ? '' : $tmp[$k];
+    //         }
+
+    //         if ($k == 'product_category_id') {
+    //             $tmp[$k] = $app->db->fetchOne("select text from product_category where id=" . $v)['text'];
+    //         }
+
+    //         if ($k == 'price_unit_id') {
+    //             $tmp[$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
+    //         }
+    //     }
+    //     $data[] = $tmp;
+    // }
+
+    return $result;
+});
+
 $app->post('/open/product/recom', function () use ($app) {
     $params = $app->request->getPost();
     $result = Products::find([
