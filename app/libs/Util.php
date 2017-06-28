@@ -2,7 +2,7 @@
 
 class Util
 {
-    public function arrayToObject($array)
+    public static function arrayToObject($array)
     {
         $object = new stdClass();
         foreach ($array as $key => $value) {
@@ -12,6 +12,21 @@ class Util
             $object->$key = $value;
         }
         return $object;
+    }
+
+    public static function objectToArray($obj)
+    {   
+        $data = [];
+        if (is_object($obj)) {
+            foreach ($obj as $key => $value) {
+                if (is_array($obj)) {
+                    $value = $this->objectToArray($value);
+                }
+                $data[$key] = $value;
+            }
+        }
+
+        return $data;
     }
 
     /**

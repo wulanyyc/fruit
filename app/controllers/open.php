@@ -79,6 +79,7 @@ $app->post('/open/upload/shop/{id:\d+}', function ($id) use ($app) {
 $app->get('/open/product/{id:\d+}', function ($id) use ($app) {
     $result = Products::findFirst($id);
 
+    $result = Util::objectToArray($result);
     foreach($result as $key => $value) {
         if ($key == 'product_category_id') {
             $result[$key] = $app->db->fetchOne("select text from product_category where id=" . $value)['text'];
