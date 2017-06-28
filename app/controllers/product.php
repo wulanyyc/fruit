@@ -68,7 +68,6 @@ $app->get('/product/list/{id:\d+}', function ($id) use ($app) {
 
 $app->post('/product/list/recom', function () use ($app) {
     $params = $app->request->getPost();
-
     $result = Products::find([
         'conditions' => 'deleteflag = 0 and state = 2',
         'order' => 'id desc',

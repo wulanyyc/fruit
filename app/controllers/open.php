@@ -77,6 +77,7 @@ $app->post('/open/upload/shop/{id:\d+}', function ($id) use ($app) {
 });
 
 $app->post('/open/product/recom', function () use ($app) {
+    $params = $app->request->getPost();
     $result = Products::find([
         'conditions' => 'deleteflag = 0 and state = 2',
         'order' => 'id desc',
