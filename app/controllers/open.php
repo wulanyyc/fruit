@@ -79,26 +79,23 @@ $app->post('/open/upload/shop/{id:\d+}', function ($id) use ($app) {
 $app->get('/open/product/{id:\d+}', function ($id) use ($app) {
     $result = Products::findFirst($id);
 
-    // $data = [];
-    // foreach($result as $item) {
-    //     $tmp = [];
-    //     foreach($item as $k => $v) {
-    //         $tmp[$k] = $v;
+    foreach($result as $key => $value) {
+        if ($key == 'product_category_id') {
+            $result[$key] = $app->db->fetchOne("select text from product_category where id=" . $value)['text'];
+        }
 
-    //         if ($k == 'pic_url') {
-    //             $tmp[$k] = empty($tmp[$k]) ? '' : $tmp[$k];
-    //         }
+        if ($key == 'shop_id') {
+            $result['shop_name'] = $app->db->fetchOne("select name from shops where id=" . $value)['name'];
+        }
 
-    //         if ($k == 'product_category_id') {
-    //             $tmp[$k] = $app->db->fetchOne("select text from product_category where id=" . $v)['text'];
-    //         }
+        if ($key == 'price_unit_id') {
+            $result[$key] = $app->db->fetchOne("select text from product_unit where id=" . $value)['text'];
+        }
+    }
 
-    //         if ($k == 'price_unit_id') {
-    //             $tmp[$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
-    //         }
-    //     }
-    //     $data[] = $tmp;
-    // }
+    unset($result['create_time']);
+    unset($result['deleteflag']);
+    unset($result['state']);
 
     return $result;
 });
