@@ -87,6 +87,7 @@ $app->get('/open/product/{id:\d+}', function ($id) use ($app) {
 
         if ($key == 'shop_id') {
             $result['shop_name'] = $app->db->fetchOne("select name from shops where id=" . $value)['name'];
+            $result['shop'] = $app->db->fetchOne("select * from shops where id=" . $value);
         }
 
         if ($key == 'price_unit_id') {
