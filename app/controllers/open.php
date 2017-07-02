@@ -5,7 +5,7 @@
 use Fruit\Model\Users;
 use Fruit\Model\Products;
 
-//用户认证（手机动态登录）
+// 用户认证（手机动态登录）
 $app->get('/open/smscode/{phone:\d+}', function ($phone) use ($app) {
     if (!$phone) {
         throw new BusinessException(1000, 'phone is required');
@@ -21,11 +21,8 @@ $app->get('/open/smscode/{phone:\d+}', function ($phone) use ($app) {
     return 'ok';
 });
 
-//用户认证（手机动态登录）
+// 用户认证（手机动态登录）
 $app->post('/open/auth', function () use ($app) {
-    // $input = file_get_contents("php://input");
-    // $data = json_decode($input, true);
-
     $data = $app->request->getPost();
 
     if (!isset($data['phone'])) {
@@ -70,7 +67,7 @@ $app->post('/open/auth', function () use ($app) {
     }
 });
 
-//用户上传
+// 用户上传
 $app->post('/open/upload/shop/{id:\d+}', function ($id) use ($app) {
     $uploader = new PictureUploader($app);
     return $uploader->upload();
@@ -100,6 +97,11 @@ $app->get('/open/product/{id:\d+}', function ($id) use ($app) {
     unset($result['state']);
 
     return $result;
+});
+
+$app->post('/open/cart', function () use ($app) {
+    $params = $app->request->getPost();
+    echo json_encode($params);
 });
 
 $app->post('/open/product/recom', function () use ($app) {
