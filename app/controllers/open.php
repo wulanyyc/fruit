@@ -101,7 +101,15 @@ $app->get('/open/product/{id:\d+}', function ($id) use ($app) {
 
 $app->post('/open/cart', function () use ($app) {
     $params = $app->request->getPost();
-    echo json_encode($params);
+    $cart = $params['cart'];
+    $cartList = implode(',', $cart);
+
+    $result = Products::find([
+        'conditions' => 'deleteflag = 0 and state = 2 and id in (' . $cartList . ')',
+        'columns' => 'id,price_unit_id,name,price,pic_url,inventory'
+    ]);
+
+    return $result;
 });
 
 $app->post('/open/product/recom', function () use ($app) {
