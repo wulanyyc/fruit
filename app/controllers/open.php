@@ -122,7 +122,9 @@ $app->post('/open/cart', function () use ($app) {
                 $data[$key]['price_unit_id'] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
             }
         }
-        $format[$value['shop_id']][] = $data[$key]; 
+        $format[$value['shop_id']]['id'] = $data[$key]['shop_id'];
+        $format[$value['shop_id']]['name'] = $data[$key]['shop_name'];
+        $format[$value['shop_id']]['data'] = $data[$key]; 
     }
 
     return $format;
