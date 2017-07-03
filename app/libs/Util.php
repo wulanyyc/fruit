@@ -19,7 +19,7 @@ class Util
         $data = [];
         if (is_object($obj)) {
             foreach ($obj as $key => $value) {
-                if (is_array($obj)) {
+                if (is_object($obj)) {
                     $value = $this->objectToArray($value);
                 }
                 $data[$key] = $value;
