@@ -163,3 +163,35 @@ $app->post('/open/product/recom', function () use ($app) {
 
     return $data;
 });
+
+$app->get('/open/product/hot', function () use ($app) {
+    $result = Products::find([
+        'conditions' => 'deleteflag = 0 and state = 2',
+        'order' => 'id desc',
+        'columns' => 'id,product_category_id,price_unit_id,name,price,pic_url,inventory',
+        'limit' => 4,
+    ]);
+
+    $data = [];
+    foreach($result as $item) {
+        $tmp = [];
+        foreach($item as $k => $v) {
+            $tmp[$k] = $v;
+
+            if ($k == 'pic_url') {
+                $tmp[$k] = empty($tmp[$k]) ? '' : $tmp[$k];
+            }
+
+            if ($k == 'product_category_id') {
+                $tmp[$k] = $app->db->fetchOne("select text from product_category where id=" . $v)['text'];
+            }
+
+            if ($k == 'price_unit_id') {
+                $tmp[$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
+            }
+        }
+        $data[] = $tmp;
+    }
+
+    return $data;
+});
