@@ -124,7 +124,7 @@ $app->post('/open/cart', function () use ($app) {
         }
         $format[$value['shop_id']]['id'] = $data[$key]['shop_id'];
         $format[$value['shop_id']]['name'] = $data[$key]['shop_name'];
-        $format[$value['shop_id']]['data'] = $data[$key]; 
+        $format[$value['shop_id']]['data'][] = $data[$key]; 
     }
 
     return $format;
