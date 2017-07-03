@@ -19,8 +19,8 @@ class Util
         $data = [];
         if (is_object($obj)) {
             foreach ($obj as $key => $value) {
-                if (is_object($obj)) {
-                    $value = self::objectToArray($value);
+                if (is_object($value)) {
+                    $data[$key] = self::objectToArray($value);
                 }
                 $data[$key] = $value;
             }
