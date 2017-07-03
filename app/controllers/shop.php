@@ -1,5 +1,6 @@
 <?php
 use Fruit\Model\Shops;
+use Fruit\Model\Users;
 
 // TODO店铺唯一性检测
 $app->post('/shop/apply/{id:\d+}', function ($id) use ($app) {
@@ -20,6 +21,9 @@ $app->post('/shop/apply/{id:\d+}', function ($id) use ($app) {
     if (!$ar->save()) {
         return $ar->getMessages();
     } else {
+        $up = Users::findFirst($id);
+        $up->user_type = 1;
+        $up->save();
         return 'ok';
     }
 });
