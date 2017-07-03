@@ -110,6 +110,7 @@ $app->post('/open/cart', function () use ($app) {
 
     $data = Util::objectToArray($result);
 
+    $format = [];
     foreach($data as $key => $value) {
         foreach($value as $k => $v) {
             if ($k == 'shop_id') {
@@ -121,9 +122,10 @@ $app->post('/open/cart', function () use ($app) {
                 $data[$key]['price_unit_id'] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
             }
         }
+        $format[$value['shop_id']][] = $data[$key]; 
     }
 
-    return $data;
+    return $format;
 });
 
 $app->post('/open/product/recom', function () use ($app) {
