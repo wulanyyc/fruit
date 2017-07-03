@@ -7,7 +7,7 @@ class Util
         $object = new stdClass();
         foreach ($array as $key => $value) {
             if (is_array($value)) {
-                $value = $this->arrayToObject($value);
+                $value = self::arrayToObject($value);
             }
             $object->$key = $value;
         }
@@ -20,7 +20,7 @@ class Util
         if (is_object($obj)) {
             foreach ($obj as $key => $value) {
                 if (is_object($value)) {
-                    $data[$key] = self::objectToArray($value);
+                    $value = self::objectToArray($value);
                 }
                 $data[$key] = $value;
             }
