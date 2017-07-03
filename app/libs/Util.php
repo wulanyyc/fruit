@@ -20,7 +20,7 @@ class Util
         if (is_object($obj)) {
             foreach ($obj as $key => $value) {
                 if (is_object($obj)) {
-                    $value = $this->objectToArray($value);
+                    $value = self::objectToArray($value);
                 }
                 $data[$key] = $value;
             }
