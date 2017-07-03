@@ -113,12 +113,12 @@ $app->post('/open/cart', function () use ($app) {
     foreach($result as $key => $value) {
         foreach($value as $k => $v) {
             if ($k == 'shop_id') {
-                $result['shop_name'] = $app->db->fetchOne("select name from shops where id=" . $v)['name'];
-                $result['shop'] = $app->db->fetchOne("select * from shops where id=" . $v);
+                $result[$key]['shop_name'] = $app->db->fetchOne("select name from shops where id=" . $v)['name'];
+                $result[$key]['shop'] = $app->db->fetchOne("select * from shops where id=" . $v);
             }
 
             if ($k == 'price_unit_id') {
-                $result[$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
+                $result[$key][$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
             }
         }
     }
