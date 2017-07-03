@@ -105,8 +105,21 @@ $app->post('/open/cart', function () use ($app) {
 
     $result = Products::find([
         'conditions' => 'deleteflag = 0 and state = 2 and id in (' . $cart . ')',
-        'columns' => 'id,price_unit_id,name,price,pic_url,inventory'
+        'columns' => 'id,price_unit_id,name,price,pic_url,inventory,shop_id'
     ]);
+
+    $result = Util::objectToArray($result);
+
+    foreach($result as $key => $value) {
+        if ($key == 'shop_id') {
+            $result['shop_name'] = $app->db->fetchOne("select name from shops where id=" . $value)['name'];
+            $result['shop'] = $app->db->fetchOne("select * from shops where id=" . $value);
+        }
+
+        if ($key == 'price_unit_id') {
+            $result[$key] = $app->db->fetchOne("select text from product_unit where id=" . $value)['text'];
+        }
+    }
 
     return $result;
 });
