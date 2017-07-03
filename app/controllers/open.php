@@ -118,7 +118,7 @@ $app->post('/open/cart', function () use ($app) {
             }
 
             if ($k == 'price_unit_id') {
-                $data[$key][$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
+                $data[$key]['price_unit_name'] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
             }
         }
     }
