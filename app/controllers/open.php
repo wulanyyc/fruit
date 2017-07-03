@@ -108,22 +108,22 @@ $app->post('/open/cart', function () use ($app) {
         'columns' => 'id,price_unit_id,name,price,pic_url,inventory,shop_id'
     ]);
 
-    $result = Util::objectToArray($result);
+    $data = Util::objectToArray($result);
 
-    foreach($result as $key => $value) {
+    foreach($data as $key => $value) {
         foreach($value as $k => $v) {
             if ($k == 'shop_id') {
-                $result[$key]['shop_name'] = $app->db->fetchOne("select name from shops where id=" . $v)['name'];
-                $result[$key]['shop'] = $app->db->fetchOne("select * from shops where id=" . $v);
+                $data[$key]['shop_name'] = $app->db->fetchOne("select name from shops where id=" . $v)['name'];
+                $data[$key]['shop'] = $app->db->fetchOne("select * from shops where id=" . $v);
             }
 
             if ($k == 'price_unit_id') {
-                $result[$key][$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
+                $data[$key][$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
             }
         }
     }
 
-    return $result;
+    return $data;
 });
 
 $app->post('/open/product/recom', function () use ($app) {
