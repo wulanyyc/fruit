@@ -111,13 +111,15 @@ $app->post('/open/cart', function () use ($app) {
     $result = Util::objectToArray($result);
 
     foreach($result as $key => $value) {
-        if ($key == 'shop_id') {
-            $result['shop_name'] = $app->db->fetchOne("select name from shops where id=" . $value)['name'];
-            $result['shop'] = $app->db->fetchOne("select * from shops where id=" . $value);
-        }
+        foreach($value as $k => $v) {
+            if ($k == 'shop_id') {
+                $result['shop_name'] = $app->db->fetchOne("select name from shops where id=" . $v)['name'];
+                $result['shop'] = $app->db->fetchOne("select * from shops where id=" . $v);
+            }
 
-        if ($key == 'price_unit_id') {
-            $result[$key] = $app->db->fetchOne("select text from product_unit where id=" . $value)['text'];
+            if ($k == 'price_unit_id') {
+                $result[$k] = $app->db->fetchOne("select text from product_unit where id=" . $v)['text'];
+            }
         }
     }
 
