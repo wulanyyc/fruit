@@ -143,7 +143,6 @@ function send_response($app, $ctx)
     $app->response->setHeader('Content-Type', $type);
     $app->response->setHeader('Content-Length', strlen($ctx));
     $app->response->setHeader('Access-Control-Allow-Origin', '*');
-    $app->response->setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     $app->response->sendHeaders();
     echo $ctx;
 }
