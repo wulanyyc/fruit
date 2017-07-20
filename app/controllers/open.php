@@ -195,3 +195,17 @@ $app->get('/open/product/hot', function () use ($app) {
 
     return $data;
 });
+
+$app->get('/open/address/district', function () use ($app) {
+    $result = $app->db->fetchAll("select name,id from china_county where region_parent_id=510100");
+
+    $data = [];
+    foreach($result as $item) {
+        $tmp = [];
+        $tmp['text'] = $item['name'];
+        $tmp['id'] = $item['id'];
+        $data[] = $tmp;
+    }
+
+    return $data;
+});
