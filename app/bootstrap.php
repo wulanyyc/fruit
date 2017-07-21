@@ -143,6 +143,7 @@ function send_response($app, $ctx)
     $app->response->setHeader('Content-Type', $type);
     $app->response->setHeader('Content-Length', strlen($ctx));
     $app->response->setHeader('Access-Control-Allow-Origin', '*');
+    $app->response->setHeader('Access-Control-Allow-Headers', 'X-ACCESS-TOKEN,X-ACCESS-ID,X-Requested-With,Content-Type,Accept');
     $app->response->sendHeaders();
     echo $ctx;
 }
@@ -210,6 +211,7 @@ function raise_errors($app, $code, $text = '')
     $app->response->setHeader('Content-Type', 'application/json; charset=utf8');
     $app->response->setHeader('Content-Length', strlen($ctx));
     $app->response->setHeader('Access-Control-Allow-Origin', '*');
+    $app->response->setHeader('Access-Control-Allow-Headers', 'X-ACCESS-TOKEN,X-ACCESS-ID,X-Requested-With,Content-Type,Accept');
     $app->response->sendHeaders();
     echo $ctx;
     exit;
