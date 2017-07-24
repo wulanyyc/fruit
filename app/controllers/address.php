@@ -20,12 +20,17 @@ $app->get('/address/region/list', function () use ($app) {
 $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
     $params = $app->request->getPost();
 
+    if ($params['default'] == true) {
+        $app->db->executeQuery("update user_address set default_flag = 0 where user_id=" . $id);
+    }
+
     $ar = new UserAddress();
     $ar->user_id = $id;
     $ar->receive_name = $params['name'];
     $ar->receive_phone = $params['phone'];
     $ar->receive_detail = $params['detail'];
     $ar->receive_region = $params['region'];
+    $ar->default_flag = $params['default'] ? 1 : 0;
 
     if (!$ar->save()) {
         return $ar->getMessages();
