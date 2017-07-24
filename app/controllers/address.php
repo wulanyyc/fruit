@@ -35,7 +35,7 @@ $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
 });
 
 
-$app->post('/address/list/{id:\d+}', function ($id) use ($app) {
+$app->get('/address/list/{id:\d+}', function ($id) use ($app) {
     $result = UserAddress::find([
         'conditions' => 'user_id = ' . $id,
         'order' => 'id desc',
