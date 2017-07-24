@@ -33,3 +33,23 @@ $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
         return 'ok';
     }
 });
+
+
+$app->post('/address/list/{id:\d+}', function ($id) use ($app) {
+    $result = UserAddress::find([
+        'conditions' => 'user_id = ' . $id,
+        'order' => 'id desc',
+        'columns' => 'id,default_flag,receive_name,receive_phone,receive_region,receive_detail',
+    ]);
+
+    $data = [];
+    foreach($result as $item) {
+        $tmp = [];
+        foreach($item as $k => $v) {
+            $tmp[$k] = $v;
+        }
+        $data[] = $tmp;
+    }
+
+    return $data;
+});
