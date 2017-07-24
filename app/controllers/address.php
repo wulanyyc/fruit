@@ -21,7 +21,7 @@ $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
     $params = $app->request->getPost();
 
     if ($params['default'] == true) {
-        $app->db->executeQuery("update user_address set default_flag = 0 where user_id=" . $id);
+        $app->db->query("update user_address set default_flag = 0 where user_id=" . $id);
     }
 
     $ar = new UserAddress();
