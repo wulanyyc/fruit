@@ -21,7 +21,6 @@ $app->get('/address/{id:\d+}', function ($id) use ($app) {
     $result = $app->db->fetchOne("select * from user_address where id=" . $id);
 
     return $result;
-    // return Util::objectToArray($result);
 });
 
 $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
@@ -32,6 +31,28 @@ $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
     }
 
     $ar = new UserAddress();
+    $ar->user_id = $id;
+    $ar->receive_name = $params['name'];
+    $ar->receive_phone = $params['phone'];
+    $ar->receive_detail = $params['detail'];
+    $ar->receive_region = $params['region'];
+    $ar->default_flag = $params['default'] ? 1 : 0;
+
+    if (!$ar->save()) {
+        return $ar->getMessages();
+    } else {
+        return 'ok';
+    }
+});
+
+$app->post('/address/update/{id:\d+}', function ($id) use ($app) {
+    $params = $app->request->getPost();
+
+    if ($params['default'] == true) {
+        $app->db->query("update user_address set default_flag = 0 where user_id=" . $id);
+    }
+
+    $ar = UserAddress::findFirst($params['id']);
     $ar->user_id = $id;
     $ar->receive_name = $params['name'];
     $ar->receive_phone = $params['phone'];
