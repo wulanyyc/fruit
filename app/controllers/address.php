@@ -58,7 +58,7 @@ $app->post('/address/update/{id:\d+}', function ($id) use ($app) {
     $ar->receive_phone = $params['phone'];
     $ar->receive_detail = $params['detail'];
     $ar->receive_region = $params['region'];
-    $ar->default_flag = $params['default'] ? 1 : 0;
+    $ar->default_flag = ($params['default'] == true) ? 1 : 0;
 
     if (!$ar->save()) {
         return $ar->getMessages();
