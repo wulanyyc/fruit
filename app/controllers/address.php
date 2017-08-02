@@ -26,7 +26,7 @@ $app->get('/address/{id:\d+}', function ($id) use ($app) {
 $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
     $params = $app->request->getPost();
 
-    if ($params['default'] == true) {
+    if ($params['default'] == 1) {
         $app->db->query("update user_address set default_flag = 0 where user_id=" . $id);
     }
 
@@ -36,7 +36,7 @@ $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
     $ar->receive_phone = $params['phone'];
     $ar->receive_detail = $params['detail'];
     $ar->receive_region = $params['region'];
-    $ar->default_flag = $params['default'] ? 1 : 0;
+    $ar->default_flag = $params['default'];
 
     if (!$ar->save()) {
         return $ar->getMessages();
@@ -48,7 +48,7 @@ $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
 $app->post('/address/update/{id:\d+}', function ($id) use ($app) {
     $params = $app->request->getPost();
 
-    if ($params['default'] == true) {
+    if ($params['default'] == 1) {
         $app->db->query("update user_address set default_flag = 0 where user_id=" . $id);
     }
 
@@ -58,7 +58,7 @@ $app->post('/address/update/{id:\d+}', function ($id) use ($app) {
     $ar->receive_phone = $params['phone'];
     $ar->receive_detail = $params['detail'];
     $ar->receive_region = $params['region'];
-    $ar->default_flag = ($params['default'] == true) ? 1 : 0;
+    $ar->default_flag = $params['default'];
 
     if (!$ar->save()) {
         return $ar->getMessages();
