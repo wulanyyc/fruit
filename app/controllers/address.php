@@ -20,7 +20,8 @@ $app->get('/address/region/list', function () use ($app) {
 $app->get('/address/{id:\d+}', function ($id) use ($app) {
     $result = $app->db->fetchOne("select * from user_address where id=" . $id);
 
-    return Util::objectToArray($result);
+    return $result;
+    // return Util::objectToArray($result);
 });
 
 $app->post('/address/add/{id:\d+}', function ($id) use ($app) {
